@@ -1,0 +1,67 @@
+body {
+    background-color: #fff;
+    font: 400 14px system-ui, -apple-system, BlinkMacSystemFont, 'Ubuntu', 'Segoe UI', 'Oxygen-Sans', 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.5rem;
+    margin: 2rem;
+  }
+  h1 {
+    line-height: 2.25rem;
+    margin-bottom: 0;
+  }
+  p {
+    margin: .5rem 0 2rem;
+  }
+  
+  /*--- TABLE ---*/
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin: 2rem 0;
+    width: 100%;
+  }
+  th, td {
+    padding: 1rem 1.5rem;
+    text-align: left;
+  }
+  th {
+    background-color: #008c5f; /* header background color */
+    color: #fff; /* header text color */
+    font-weight: 600;
+  }
+  tr {
+    padding: 0;
+  }
+  td {
+    vertical-align: middle;
+  }
+  tr:nth-child(even) td {
+    background-color: rgba(0, 0, 0, .075); /* striped background color */
+  }
+  @media screen and (max-width: 640px) {
+    thead, th {
+      display: none;
+    }
+    tr, td {
+      display: block;
+    }
+    tr {
+      border: 1px solid rgba(0, 0 , 0 ,.15);
+      margin-bottom: 2rem;
+    }
+    tr:last-child {
+      margin-bottom: 0;
+    }
+    tr:nth-child(even) td {
+      background-color: transparent;
+    }
+    td {
+      clear: both;
+      text-align: right;
+    }
+    td:before {
+      content: attr(data-label)': ';
+      float: left;
+      font-weight: bold;
+      margin-right: 1rem;
+    }
+  }
