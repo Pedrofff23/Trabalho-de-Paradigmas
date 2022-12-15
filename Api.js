@@ -8,11 +8,10 @@ antigo[0] = 0;
 
 var baseURL =
   "https://br1.api.riotgames.com/lol/league/v4/entries/RANKED_SOLO_5x5/DIAMOND/II?page=";
-var apiKEY = "&api_key=RGAPI-4c2ba5b7-4aeb-484d-a3dc-1b89e3b2a402";
-var apiKEY2 = "?api_key=RGAPI-4c2ba5b7-4aeb-484d-a3dc-1b89e3b2a402";
+var apiKEY = "&api_key=RGAPI-6fff9ad8-b4ca-428e-9aa2-2aac83ad0eba";
+var apiKEY2 = "?api_key=RGAPI-6fff9ad8-b4ca-428e-9aa2-2aac83ad0eba";
 let apiURL = `${baseURL}${page}${apiKEY}`;
-let playerURL =
-  "https://br1.api.riotgames.com/lol/league/v4/entries/by-summoner/";
+let playerURL = "https://br1.api.riotgames.com/lol/league/v4/entries/by-summoner/";
 
 const Table = document.getElementById("Table");
 const tHead = document.getElementById("header_table");
@@ -22,7 +21,7 @@ const tHeadt = document.getElementById("header_tablet");
 
 const voltar = document.querySelector(".btn-voltar");
 const proximo = document.querySelector(".btn-proximo");
-const time = document.querySelector(".btn-times");
+const partida = document.querySelector(".btn-times");
 const info = document.getElementsByClassName("btn-info");
 
 const fetchApi = async (apiURL) => {
@@ -34,20 +33,18 @@ const fetchApi = async (apiURL) => {
 };
 
 const worker = () => {
-  const final = 200;
 
   const flag = new SharedArrayBuffer(4);
-  const vetor = new SharedArrayBuffer(20 * 4);
+  const vetor = new SharedArrayBuffer(100 * 4);
 
   const flagView = new Int8Array(flag);
   const vetorView = new Int32Array(vetor);
 
-  vetorView.set(final);
   flagView[0] = 1;
 
   let workers = [];
 
-  for (let i = 0; i < 8; i++) {
+  for (let i = 0; i < 10; i++) {
     workers.push(new Worker("worker.js"));
     workers[i].postMessage({ flag, vetor });
   }
@@ -121,4 +118,8 @@ proximo.addEventListener("click", () => {
   page = page + 1;
   apiURL = `${baseURL}${page}${apiKEY}`;
   renderList(apiURL);
+});
+
+partida.addEventListener("click", () => {
+  worker()
 });
