@@ -1,5 +1,5 @@
 # Trabalho-de-Paradigmas
-##Passos para fazer o docker funcionar
+## Passos para fazer o docker funcionar
 
 docker run -v  $PWD/assyncjs:/app/web -d -p 8090:80  --name paradigmas dmstr/php-yii2:latest-nginx
 
