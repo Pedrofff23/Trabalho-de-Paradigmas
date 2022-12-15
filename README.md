@@ -15,4 +15,4 @@ Adicione abaixo da linha add_header Last-Modified ""
         
 restarte o container
 
-abra no browser http://localhost:8090/ex14.html
+abra no browser http://localhost:8090/teste.html
