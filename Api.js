@@ -35,10 +35,10 @@ const fetchApi = async (apiURL) => {
 const worker = () => {
 
   const flag = new SharedArrayBuffer(4);
+  //Tamanho em bytes de 100 posicoes
   const vetor = new SharedArrayBuffer(100 * 4);
 
   const flagView = new Int8Array(flag);
-  const vetorView = new Int32Array(vetor);
 
   flagView[0] = 1;
 
@@ -94,7 +94,7 @@ const renderList = async (apiURL) => {
               Tablet.innerHTML += info;
             });
           } else {
-            console.error("Informação ja carregada");
+            alert("Informação ja carregada");
           }
           antigo[k] = data[j].summonerId;
           k++;

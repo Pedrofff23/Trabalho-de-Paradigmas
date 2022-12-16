@@ -4,28 +4,45 @@ self.onmessage = (e) => {
 
   while (true) {
     //Pega 2 jogadores para fazer 1 vs 1
-    player1 = Math.ceil(Math.random() * 200);
-    player2 = Math.ceil(Math.random() * 200);
-
-    aceitar1 = Math.ceil(Math.random() * 2);
-    aceitar2 = Math.ceil(Math.random() * 2);
+    player = Math.ceil(Math.random() * 200);
 
     let partida = Math.ceil(Math.random() * 49);
 
     //Sorteia novamente ate pegar 2 jogadores diferentes
-    while (player1 == player2) {
-      player1 = Math.ceil(Math.random() * 200);
+    while (arrayView.find((num) => num === player)) {
+      player = Math.ceil(Math.random() * 200);
     }
+    //Se tem algo em arrayView
+    if (arrayView[partida] === 0) {
+      switch (Math.ceil(Math.random() * 2)) {
+        case 1:
+          //Espera que o vertor esteja desponivel
+          Atomics.wait(flagview, 0, 0);
+          Atomics.store(flagview, 0, 0);
 
-    //Se os 2 jogadores darem match
-    if (aceitar1 == aceitar2) {
-      //Espera que o vertor esteja desponivel
-      Atomics.wait(flagview, 0, 0);
-      Atomics.store(flagview, 0, 0);
+          //A cada 2 posições ocapadas por jogadores é 1 partida
+          Atomics.store(arrayView, partida, player);
 
-      //A cada 2 posições ocapadas por jogadores é 1 partida
-      Atomics.store(arrayView, partida, player1);
-      Atomics.store(arrayView, partida + 1, player2);
+          break;
+        case 2:
+          //Espera que o vertor esteja desponivel
+          break;
+      }
+    } else if (ArrayBuffer[partida + 1 === 0]) {
+      if (arrayView[partida] === 0) {
+        switch (Math.ceil(Math.random() * 2)) {
+          case 1:
+            //Espera que o vertor esteja desponivel
+     
+            //A cada 2 posições ocapadas por jogadores é 1 partida
+            Atomics.store(arrayView, partida + 1, player);
+
+            break;
+          case 2:
+            //Espera que o vertor esteja desponivel
+            break;
+        }
+      }
     }
 
     Atomics.store(flagview, 0, 1);
